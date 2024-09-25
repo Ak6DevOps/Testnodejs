@@ -1,0 +1,29 @@
+#This is a simple Git actions pipline for the task. We acan add the Sonar qube or Trivy or Other Testing tools for DevSecOPS pipeline.
+name: SSH to EC2 VM
+
+on:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  ssh-command:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.5.4
+        with:
+          ssh-private-key: ${{ secrets.EC2_SSH_KEY }}
+
+      - name: Connect to EC2 VM
+        run: |
+          ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_HOST }} << EOF
+          cd /home/ubuntu/Testnodejs
+          git pull
+          pm2 restart 0
+          service restart nginx
+          EOF
