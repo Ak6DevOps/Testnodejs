@@ -22,5 +22,5 @@ jobs:
       - name: Connect to EC2 VM
         run: |
           ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_HOST }}
-          bash test.sh
+          sudo bash test.sh
           
