@@ -23,6 +23,5 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_HOST }} << EOF
           cd /home/ubuntu/Testnodejs/
-          git pull
-          sudo pm2 restart app --update-env
+          bash test.sh
           EOF
