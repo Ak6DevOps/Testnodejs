@@ -25,5 +25,5 @@ jobs:
           cd /home/ubuntu/Testnodejs
           git pull
           sudo pm2 restart app --update-env
-          service restart nginx
+          sudo service restart nginx
           EOF
