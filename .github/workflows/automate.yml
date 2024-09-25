@@ -22,7 +22,7 @@ jobs:
       - name: Connect to EC2 VM
         run: |
           ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_HOST }} << EOF
-          cd /home/ubuntu/Testnodejs
+          cd /home/ubuntu/Testnodejs/
           git pull
           sudo pm2 restart app --update-env
           EOF
